@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/editActivityType"
+        android:title="@string/optEdit"
+        />
+    <item
+        android:id="@+id/deleteActivityType"
+        android:title="@string/optDelete" />
+</menu>

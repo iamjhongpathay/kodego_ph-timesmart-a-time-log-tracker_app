@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_p_home">
+
+    <fragment
+        android:id="@+id/nav_p_home"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.home.PersonalHomeFragment"
+        android:label="@string/nav_title_home"
+        tools:layout="@layout/p_fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_p_history"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.history.PersonalHistoryFragment"
+        android:label="@string/nav_title_history"
+        tools:layout="@layout/p_fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_p_reminder"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.reminder.NotificationsFragment"
+        android:label="@string/nav_title_reminder"
+        tools:layout="@layout/p_fragment_reminder" />
+
+    <fragment
+        android:id="@+id/nav_p_activityTypes"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.PersonalActivityTypeFragment"
+        android:label="@string/nav_title_activityTypes"
+        tools:layout="@layout/p_fragment_activity_type" >
+        <action
+            android:id="@+id/action_nav_p_activityTypes_to_addActivityTypeDialogFragment"
+            app:destination="@id/addActivityTypeDialogFragment" />
+        <action
+            android:id="@+id/action_nav_p_activityTypes_to_updateActivityTypeDialogFragment"
+            app:destination="@id/updateActivityTypeDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/addActivityTypeDialogFragment"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.add.AddActivityTypeDialogFragment"
+        android:label="dialog_fragment_add_activity_type"
+        tools:layout="@layout/dialog_fragment_add_activity_type" />
+
+    <dialog
+        android:id="@+id/updateActivityTypeDialogFragment"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.update.UpdateActivityTypeDialogFragment"
+        android:label="dialog_fragment_update_activity_type"
+        tools:layout="@layout/dialog_fragment_update_activity_type" >
+        <argument
+            android:name="selectedActivityType"
+            app:argType="com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.activity_type_table.ActivityType" />
+    </dialog>
+
+</navigation>

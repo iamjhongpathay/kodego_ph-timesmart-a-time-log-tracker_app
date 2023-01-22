@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">TimeSmart</string>
+    //Bottom Nav Title
+    <string name="nav_title_home">Home</string>
+    <string name="nav_title_history">History</string>
+    <string name="nav_title_reminder">Reminder</string>
+    <string name="nav_title_activityTypes">Types</string>
+
+    //TextView
+    <string name="tv_activity_type_name">Name of activity...</string>
+    <string name="tv_home_activity_name">ActivityName</string>
+
+    //TextView-Label
+    <string name="tv_label_1">Fill all the details and save new activity type.</string>
+    <string name="tv_label_2">Fill all the details and update current activity type.</string>
+    <string name="tv_label_icon">Icon</string>
+    <string name="tv_label_color">Color</string>
+    <string name="tv_label_name">Name</string>
+
+    //Edit Text
+    <string name="etAddActivityTypeName">Enter Name</string>
+
+    //Button
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_choose_color">Select Color</string>
+
+    //Side Option Menu
+    <string name="optEdit">Edit</string>
+    <string name="optDelete">Delete</string>
+
+    //DropdownMenu
+    <string name="dropdown_menu_icon">Select an icon...</string>
+    <string-array name="icon_names">
+        <item>learning</item>
+        <item>reading</item>
+        <item>sleep</item>
+        <item>taxi_location</item>
+        <item>walking</item>
+        <item>weber</item>
+        <item>business</item>
+        <item>buying</item>
+        <item>container</item>
+        <item>housekeeping</item>
+        <item>track_and_field</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

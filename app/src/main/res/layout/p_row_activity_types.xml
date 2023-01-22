@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/ivActivityTypeIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_image_place_holder" />
+
+    <TextView
+        android:id="@+id/tvActivityTypeName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:paddingEnd="5dp"
+        android:text="@string/tv_activity_type_name"
+        android:textColor="@color/text_color_1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivActivityTypeIcon"
+        app:layout_constraintEnd_toStartOf="@+id/imgbActivityTypeOptionMenu"
+        app:layout_constraintStart_toEndOf="@+id/ivActivityTypeIcon"
+        app:layout_constraintTop_toTopOf="@+id/ivActivityTypeIcon" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imgbActivityTypeOptionMenu"
+        tools:ignore="TouchTargetSizeCheck"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="Image Button Activity Type Option Menu"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/tvActivityTypeName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvActivityTypeName"
+        app:srcCompat="@drawable/ic_3dot_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
