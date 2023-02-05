@@ -1,12 +1,18 @@
 package com.kodego.app.timesmart_atimelogtracker
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.kodego.app.timesmart_atimelogtracker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,10 +32,14 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_p_home, R.id.nav_p_history, R.id.nav_p_reminder, R.id.nav_p_activityTypes
+                R.id.nav_p_home, R.id.nav_p_history, R.id.nav_p_activityTypes
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
+        supportActionBar?.setCustomView(R.layout.custom_actionbar_title);
+        supportActionBar?.elevation = 0F
     }
 }

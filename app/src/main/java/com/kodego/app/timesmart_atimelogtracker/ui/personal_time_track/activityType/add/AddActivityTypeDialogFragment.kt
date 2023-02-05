@@ -1,10 +1,13 @@
 package com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.add
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kodego.app.timesmart_atimelogtracker.R
@@ -19,7 +22,7 @@ class AddActivityTypeDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding : DialogFragmentAddActivityTypeBinding
     lateinit var activityTypeViewModel : ActivityTypeViewModel
-    var defaultColor = 16764057
+    var defaultColor = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +41,10 @@ class AddActivityTypeDialogFragment : BottomSheetDialogFragment() {
         //Button
         binding.btnSaveActivityType.setOnClickListener(){
             save()
-            dismiss()
         }
         binding.btnCancelAddActivityType.setOnClickListener(){
             dismiss()
         }
-
 
         binding.btnChooseColor.setOnClickListener(){
             openColorPicker()
@@ -64,6 +65,7 @@ class AddActivityTypeDialogFragment : BottomSheetDialogFragment() {
             override fun onOk(dialog: AmbilWarnaDialog?, color: Int) {
                 defaultColor = color
                 binding.btnChooseColor.setBackgroundColor(defaultColor)
+                Log.e("Color Code", defaultColor.toString())
             }
 
         })
@@ -71,14 +73,22 @@ class AddActivityTypeDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun save(){
-        var activityTypeName : String = binding.etAddActivityTypeName.text.toString()
-        var icon : String = binding.spinnerAddActivityType.selectedItem.toString()
-            .replaceFirstChar { it.lowercase(Locale.ROOT) }
-        var iconColor : Int = defaultColor
+        if(binding.etAddActivityTypeName.text?.isEmpty() == true) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Warning!")
+                .setMessage("Activity type name cannot be empty.'")
+                .setPositiveButton("Ok") { _, _ ->
 
-        val activityType = ActivityType(0, activityTypeName, icon, iconColor)
-        activityTypeViewModel.addActivityType(activityType)
+                }.show()
+        }else {
+            var activityTypeName: String = binding.etAddActivityTypeName.text.toString()
+            var icon: String = binding.spinnerAddActivityType.selectedItem.toString()
+                .replaceFirstChar { it.lowercase(Locale.ROOT) }
+            var iconColor: Int = defaultColor
 
-        Toast.makeText(requireContext(), "New activity type saved!", Toast.LENGTH_SHORT).show()
+            val activityType = ActivityType(0, activityTypeName, icon, iconColor)
+            activityTypeViewModel.addActivityType(activityType)
+            dismiss()
+        }
     }
 }

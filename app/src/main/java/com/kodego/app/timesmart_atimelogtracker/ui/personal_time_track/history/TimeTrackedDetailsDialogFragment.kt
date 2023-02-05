@@ -1,60 +1,108 @@
 package com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.history
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.kodego.app.timesmart_atimelogtracker.R
+import com.kodego.app.timesmart_atimelogtracker.databinding.DialogFragmentTimeTrackedDetailsBinding
+import com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.activity_type_table.ActivityType
+import com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.time_track_table.TimeTrack
+import com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.time_track_table.TimeTrackViewModel
+import com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.ActivityTypeAdapter
+import java.text.SimpleDateFormat
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TimeTrackedDetailsDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TimeTrackedDetailsDialogFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class TimeTrackedDetailsDialogFragment : BottomSheetDialogFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: DialogFragmentTimeTrackedDetailsBinding
+    private val args by navArgs<TimeTrackedDetailsDialogFragmentArgs>()
+    var defaultColor = 0
+
+    lateinit var timeTrackViewModel: TimeTrackViewModel
+
+    lateinit var historyTimeTrackedAdapter: HistoryTimeTrackedAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.dialog_fragment_time_tracked_details, container, false)
+        binding = DialogFragmentTimeTrackedDetailsBinding.inflate(layoutInflater)
+        timeTrackViewModel = ViewModelProvider(this)[TimeTrackViewModel::class.java]
+        historyTimeTrackedAdapter = HistoryTimeTrackedAdapter()
+
+        val icon: Int = resources.getIdentifier(args.currentTimeTracked.icon.toString(), "drawable", requireContext().packageName)
+        var dateFormat = SimpleDateFormat("EEEE, dd MMM yyyy")
+        val timeFormat = SimpleDateFormat("hh:mm a")
+        //set the current value by user selected from recyclerview
+        binding.tvActivityTypeNameDetailsHistory.text = args.currentTimeTracked.activityTypeName
+        binding.ivIconDetailsHistory.setImageResource(icon)
+        defaultColor = args.currentTimeTracked.color
+        binding.ivIconDetailsHistory.setColorFilter(defaultColor)
+        binding.etCommentDetailsHistory.setText(args.currentTimeTracked.comment)
+        binding.tvStartedOnDetailsHistory.text = dateFormat.format(args.currentTimeTracked.dateTimeStarted)
+        binding.tvStartedTimeDetailsHistory.text = timeFormat.format(args.currentTimeTracked.dateTimeStarted)
+        binding.tvEndedDateDetailsHistory.text = dateFormat.format(args.currentTimeTracked.dateTimeStopped)
+        binding.tvEndedTimeDetailsHistory.text = timeFormat.format(args.currentTimeTracked.dateTimeStopped)
+        binding.tvTimeTrackedDetailsHistory.text = timeStringFromLong(args.currentTimeTracked.timeTracked)
+
+        binding.btnSaveTimeTrackedHistoryDetails.setOnClickListener(){
+            update()
+        }
+
+        binding.btnDeleteTimeTrackedHistoryDetails.setOnClickListener(){
+            delete()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TimeTrackedDetailsDialogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TimeTrackedDetailsDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+
+    private fun timeStringFromLong(ms: Long): String
+    {
+        val seconds = (ms / 1000) % 60
+        val minutes = (ms / (1000 * 60) % 60)
+        val hours = (ms / (1000 * 60 * 60) % 24)
+        return makeTimeString(hours, minutes, seconds)
+    }
+
+    private fun makeTimeString(hours: Long, minutes: Long, seconds: Long): String
+    {
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
+    }
+
+    private fun update(){
+
+        var comment : String = binding.etCommentDetailsHistory.text.toString()
+
+        timeTrackViewModel.updateTimeTracked(comment, args.currentTimeTracked.id)
+        dismiss()
+    }
+
+    private fun delete(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes"){_,_ ->
+
+            timeTrackViewModel.deleteTimeTracked(args.currentTimeTracked)
+            val bottomNavView: BottomNavigationView = activity?.findViewById(R.id.nav_view)!!
+            Snackbar.make(requireActivity().findViewById(android.R.id.content), "Activity deleted from history", Snackbar.ANIMATION_MODE_SLIDE).apply {
+                anchorView = bottomNavView
+            }.show()
+            dismiss()
+
+        }
+        builder.setNegativeButton("No"){_,_ -> }
+        builder.setTitle("Remove")
+        builder.setMessage("Remove this activity?")
+            .show()
     }
 }

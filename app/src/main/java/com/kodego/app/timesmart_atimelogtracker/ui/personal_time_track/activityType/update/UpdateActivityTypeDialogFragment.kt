@@ -1,5 +1,6 @@
 package com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -81,15 +82,24 @@ class UpdateActivityTypeDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun update(){
+        if(binding.etEditActivityTypeName.text?.isEmpty() == true) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Warning!")
+                .setMessage("Activity type name cannot be empty.'")
+                .setPositiveButton("Ok") { _, _ ->
 
-        var activityTypeName : String = binding.etEditActivityTypeName.text.toString()
-        var icon : String = binding.spinnerEditActivityType.selectedItem.toString()
-            .replaceFirstChar { it.lowercase(Locale.ROOT) }
-        var iconColor : Int = defaultColor
+                }.show()
+        }else {
+            var activityTypeName: String = binding.etEditActivityTypeName.text.toString()
+            var icon: String = binding.spinnerEditActivityType.selectedItem.toString()
+                .replaceFirstChar { it.lowercase(Locale.ROOT) }
+            var iconColor: Int = defaultColor
 
-        val updateActivityType = ActivityType(args.selectedActivityType.id, activityTypeName, icon, iconColor)
-        activityTypeViewModel.updateActivityType(updateActivityType)
+            val updateActivityType =
+                ActivityType(args.selectedActivityType.id, activityTypeName, icon, iconColor)
+            activityTypeViewModel.updateActivityType(updateActivityType)
 
-        dismiss()
+            dismiss()
+        }
     }
 }

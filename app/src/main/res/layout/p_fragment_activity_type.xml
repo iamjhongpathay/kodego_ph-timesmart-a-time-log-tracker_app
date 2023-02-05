@@ -6,6 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ui.personal_time_track.activityType.PersonalActivityTypeFragment">
 
+    <ImageView
+        android:id="@+id/ivNothingFound2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_nothing_found"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNoActivityType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_no_activity_type_label"
+        android:textColor="@color/text_color_1"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/ivNothingFound2"
+        app:layout_constraintStart_toStartOf="@+id/ivNothingFound2"
+        app:layout_constraintTop_toBottomOf="@+id/ivNothingFound2" />
+
+    <TextView
+        android:id="@+id/tvNoActivityType2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_no_activity_type_label_1"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/tvNoActivityType"
+        app:layout_constraintStart_toStartOf="@+id/tvNoActivityType"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoActivityType" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPersonalActivityTypes"
         android:layout_width="0dp"
@@ -21,10 +54,11 @@
         android:id="@+id/fabAddActivityType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
         android:src="@drawable/ic_plus"
+        app:backgroundTint="@color/main_color"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

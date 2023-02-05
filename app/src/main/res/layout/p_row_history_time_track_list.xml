@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="85dp">
 
+    <ImageView
+        android:id="@+id/ivActivityTypeIconHistory"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_image_place_holder" />
+
+    <TextView
+        android:id="@+id/tvActivityTypeNameHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/tv_home_activity_name"
+        android:textColor="@color/text_color_1"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/ivActivityTypeIconHistory"
+        app:layout_constraintTop_toTopOf="@+id/ivActivityTypeIconHistory" />
+
+    <TextView
+        android:id="@+id/tvTimeStartEndHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/tv_time_start_end"
+        android:textColor="@color/text_color_1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivActivityTypeIconHistory"
+        app:layout_constraintStart_toEndOf="@+id/ivActivityTypeIconHistory"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityTypeNameHistory" />
+
+    <TextView
+        android:id="@+id/tvTrackedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/tv_time_counting_place_holder"
+        android:textColor="@color/text_color_3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingEnd="5dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTimeStartEndHistory"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeStartEndHistory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

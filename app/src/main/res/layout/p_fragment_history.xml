@@ -4,7 +4,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradients"
     tools:context=".ui.personal_time_track.history.PersonalHistoryFragment">
 
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:includeFontPadding="false"
+        android:shadowColor="@color/text_color_3"
+        android:shadowRadius="5"
+        android:text="@string/tv_date_place_holder"
+        android:textAlignment="center"
+        android:textColor="@color/text_color_2"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/tvTimeTracked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/text_color_3"
+        android:shadowRadius="2.5"
+        android:text="@string/tv_time_tracked_label"
+        android:textColor="@color/text_color_2"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvDate"
+        app:layout_constraintStart_toStartOf="@+id/tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView2"
+        style="@style/MyCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeTracked">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivNothingFound"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/ic_nothing_found"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnHistoryList" />
+
+            <TextView
+                android:id="@+id/tvNoHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tv_no_history"
+                android:textColor="@color/text_color_1"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/ivNothingFound"
+                app:layout_constraintStart_toStartOf="@+id/ivNothingFound"
+                app:layout_constraintTop_toBottomOf="@+id/ivNothingFound" />
+
+            <TextView
+                android:id="@+id/tvNoHistory2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/tv_no_history_1"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/tvNoHistory"
+                app:layout_constraintStart_toStartOf="@+id/tvNoHistory"
+                app:layout_constraintTop_toBottomOf="@+id/tvNoHistory" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewHistory"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPieChartHIstory" />
+
+            <ImageButton
+                android:id="@+id/btnHistoryList"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_list"
+                app:layout_constraintEnd_toStartOf="@+id/btnPieChartHIstory"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnPieChartHIstory"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_pie_chart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnHistoryList"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPieChartHIstory" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

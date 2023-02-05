@@ -49,9 +49,20 @@ class PersonalActivityTypeFragment : Fragment() {
         binding.recyclerViewPersonalActivityTypes.layoutManager = LinearLayoutManager(requireContext())
 
         //ActivityTypeViewModel
-        activityTypeViewModel.readAllDataActivityTypes.observe(viewLifecycleOwner, Observer { activity ->
+        activityTypeViewModel.readAllDataActivityTypes.observe(viewLifecycleOwner) { activity ->
+            if(activity.isEmpty()){
+                binding.recyclerViewPersonalActivityTypes.visibility = View.GONE
+                binding.ivNothingFound2.visibility = View.VISIBLE
+                binding.tvNoActivityType.visibility = View.VISIBLE
+                binding.tvNoActivityType2.visibility = View.VISIBLE
+            }else {
+                binding.recyclerViewPersonalActivityTypes.visibility = View.VISIBLE
+                binding.ivNothingFound2.visibility = View.GONE
+                binding.tvNoActivityType.visibility = View.GONE
+                binding.tvNoActivityType2.visibility = View.GONE
+            }
             activityTypeAdapter.setData(activity)
-        })
+        }
         //delete activity type
         delete()
     }

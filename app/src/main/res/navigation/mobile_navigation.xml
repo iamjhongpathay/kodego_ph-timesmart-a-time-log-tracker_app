@@ -8,25 +8,25 @@
     <fragment
         android:id="@+id/nav_p_home"
         android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.home.PersonalHomeFragment"
-        android:label="@string/nav_title_home"
         tools:layout="@layout/p_fragment_home" />
 
     <fragment
         android:id="@+id/nav_p_history"
         android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.history.PersonalHistoryFragment"
-        android:label="@string/nav_title_history"
-        tools:layout="@layout/p_fragment_history" />
+        tools:layout="@layout/p_fragment_history" >
+        <action
+            android:id="@+id/action_nav_p_history_to_timeTrackedDetailsDialogFragment"
+            app:destination="@id/timeTrackedDetailsDialogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_p_reminder"
         android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.reminder.NotificationsFragment"
-        android:label="@string/nav_title_reminder"
         tools:layout="@layout/p_fragment_reminder" />
 
     <fragment
         android:id="@+id/nav_p_activityTypes"
         android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.activityType.PersonalActivityTypeFragment"
-        android:label="@string/nav_title_activityTypes"
         tools:layout="@layout/p_fragment_activity_type" >
         <action
             android:id="@+id/action_nav_p_activityTypes_to_addActivityTypeDialogFragment"
@@ -50,6 +50,15 @@
         <argument
             android:name="selectedActivityType"
             app:argType="com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.activity_type_table.ActivityType" />
+    </dialog>
+    <dialog
+        android:id="@+id/timeTrackedDetailsDialogFragment"
+        android:name="com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.history.TimeTrackedDetailsDialogFragment"
+        android:label="dialog_fragment_time_tracked_details"
+        tools:layout="@layout/dialog_fragment_time_tracked_details" >
+        <argument
+            android:name="currentTimeTracked"
+            app:argType="com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.time_track_table.TimeTrack" />
     </dialog>
 
 </navigation>

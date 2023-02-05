@@ -41,7 +41,7 @@
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         app:counterEnabled="true"
-        app:counterMaxLength="50"
+        app:counterMaxLength="25"
         app:endIconMode="clear_text"
         app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etAddActivityTypeName"
-            android:maxLength="50"
+            android:maxLength="25"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +88,7 @@
         android:layout_marginTop="8dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        app:backgroundTint="@color/color_pick"
+        app:backgroundTint="@color/black"
         app:elevation="0dp"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7"

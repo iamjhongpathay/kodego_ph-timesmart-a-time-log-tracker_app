@@ -16,7 +16,7 @@ class ActivityTypeViewModel(application: Application) : AndroidViewModel(applica
     init {
         val activityTypeDao = TimeSmartDatabase.invoke(application).activityTypeDao()
         activityTypeRepository = ActivityTypeRepository(activityTypeDao)
-        readAllDataActivityTypes = activityTypeRepository.readAllDataActivityTypes
+        this.readAllDataActivityTypes = activityTypeRepository.readAllDataActivityTypes
     }
 
     fun addActivityType(activityType: ActivityType){

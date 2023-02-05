@@ -2,14 +2,16 @@ package com.kodego.app.timesmart_atimelogtracker.ui.personal_time_track.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.kodego.app.timesmart_atimelogtracker.R
 import com.kodego.app.timesmart_atimelogtracker.databinding.PRowHomeActivityTypesListBinding
 import com.kodego.app.timesmart_atimelogtracker.db.personal_time_track.activity_type_table.ActivityType
 
-class ActivityTypeListAdapter() : RecyclerView.Adapter<ActivityTypeListAdapter.PersonalHomeActivityTypesViewModel>() {
+class HomeActivityTypeListAdapter() : RecyclerView.Adapter<HomeActivityTypeListAdapter.PersonalHomeActivityTypesViewModel>() {
 
     private var activityTypeList = emptyList<ActivityType>()
+    var onActivityTypeClicked : ((ActivityType) -> Unit)? = null
 
     inner class PersonalHomeActivityTypesViewModel(var binding : PRowHomeActivityTypesListBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,6 +22,7 @@ class ActivityTypeListAdapter() : RecyclerView.Adapter<ActivityTypeListAdapter.P
     }
 
     override fun onBindViewHolder(holder: PersonalHomeActivityTypesViewModel, position: Int) {
+
         holder.binding.apply {
             var icon : Int = holder.itemView.resources.getIdentifier(activityTypeList[position].icon.toString(), "drawable", holder.itemView.context.packageName)
             tvHomeActivityTypeName.text = activityTypeList[position].name
@@ -30,6 +33,10 @@ class ActivityTypeListAdapter() : RecyclerView.Adapter<ActivityTypeListAdapter.P
             }else{
                 ivHomeActivityTypeIcon.setImageResource(icon)
             }
+        }
+
+        holder.itemView.setOnClickListener(){
+            onActivityTypeClicked?.invoke(activityTypeList[position])
         }
     }
 
